@@ -39,6 +39,12 @@ void upgrade_manager(int quietlevel) {
 }
 
 int main(int argc, char **argv) {
+  ultra(argc, argv);
+
+  return 0;
+}
+
+int ultra(int argc, char **argv) {
   if (argc < 2) {
     print_usage();
     return 0;

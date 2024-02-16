@@ -1,4 +1,5 @@
 #include "include/download.h"
+#include "include/basic.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,10 +8,11 @@
 #define PACKAGE_URL_PREFIX "https://github.com/ultrapack/" // Git-based until I get enough donations for repo.ultrapack.org
 
 size_t writef_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
+  if (quietlevel == 3) printf("%s%sULTRA%s%s Constructing 'writef_data' function...\n", CYAN, BLUE, CYAN, NORMAL);
   return fwrite(ptr, size, nmemb, stream);
 }
 
-int download_package(const char *package_name) {
+int download_package(int onlydownload, int nodependencies, int quietlevel) {
   CURL *curl;
   CURLcode res;
   FILE *fp;
@@ -37,9 +39,11 @@ int download_package(const char *package_name) {
   curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
 
+:wa
+:!poweroff
   res = curl_easy_perform(curl);
   if (res != CURLE_OK) {
-    fprintf(stderr, "Failed to download '%s'\n", curl_easy_strerror(res));
+    if (quietlevel != 0) fprintf(stderr, "%sError: Failed to download '%s'\n", RED, curl_easy_strerror(res));
     fclose(fp);
     curl_easy_cleanup(curl);
     exit(1);
