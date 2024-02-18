@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <curl/curl.h>
+#include "curl/include/curl/curl.h"
 
 #define PACKAGE_URL_PREFIX "https://github.com/ultrapack/" // Git-based until I get enough donations for repo.ultrapack.org
 
@@ -36,11 +36,9 @@ int download_package(int onlydownload, int nodependencies, int quietlevel) {
   }
 
   curl_easy_setopt(curl, CURLOPT_URL, url);
-  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writef_data);
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
 
-:wa
-:!poweroff
   res = curl_easy_perform(curl);
   if (res != CURLE_OK) {
     if (quietlevel != 0) fprintf(stderr, "%sError: Failed to download '%s'\n", RED, curl_easy_strerror(res));

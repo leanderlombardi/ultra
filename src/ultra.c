@@ -1,9 +1,10 @@
 #include <stdio.h>        // printf(char *format, ...);
-#include <stdlib.h>       // exit(int code);
+// #include <stdlib.h>       // exit(int code);
 #include <string.h>       // strcmp(const char *s1, const char *s2);
+#include "include/ultra.h"
 
 void print_usage() {
-  printf("Usage of ultra package manager:\n\n");
+  printf("Usage of ultra package manager:\n");
   printf("\tultra h ........................... Print this message and exit\n");
   printf("\tultra i [options] <package(s)> .... Installs given package(s)\n");
   printf("\tultra r [options] <package(s)> .... Removes given package(s)\n\n");
