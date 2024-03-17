@@ -1,6 +1,6 @@
 #ifndef DOWNLOAD_H
 #define DOWNLOAD_H
 
-#define BASIC_LINK "https://raw.githubusercontent.com/"
+void download_package(char *package_name);
 
 #endif // DOWNLOAD_H

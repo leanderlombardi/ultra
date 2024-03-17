@@ -3,5 +3,4 @@
 
 int ultra(int argc, char **argv);
 
-#endif /* ULTRA_H */
-
+#endif // ULTRA_H

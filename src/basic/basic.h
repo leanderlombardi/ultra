@@ -10,5 +10,7 @@
 #define CYAN "\x1B[36m"
 #define WHITE "\x1B[37m"
 
+int file_exists(char *);
+
 #endif /* BASIC_H */
 
